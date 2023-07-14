@@ -1,0 +1,33 @@
+% Bit Plane Slicing
+
+clc;
+clear all;
+close all;
+
+i=imread('peppers.png');
+b= double(i);
+subplot(3,3,1); imshow(i); title('Original Image');
+
+b1=(bitget(b,1));
+subplot(3,3,2); imshow (b1); title('BIT PLANE 1');
+
+b2=(bitget(b,2));
+subplot(3,3,3); imshow (b2); title('BIT PLANE 2');
+
+b3=(bitget(b,3));
+subplot(3,3,4); imshow (b3); title('BIT PLANE 3');
+
+b4=(bitget(b,4));
+subplot(3,3,5); imshow (b4); title('BIT PLANE 4');
+
+b5=(bitget(b,5));
+subplot(3,3,6); imshow (b5); title('BIT PLANE 5');
+
+b6=(bitget(b,6));
+subplot(3,3,7); imshow (b6); title('BIT PLANE 6');
+
+b7=(bitget(b,7));
+subplot(3,3,8); imshow (b7); title('BIT PLANE 7');
+
+b8=(bitget(b,8));
+subplot(3,3,9); imshow (b8); title('BIT PLANE 8');

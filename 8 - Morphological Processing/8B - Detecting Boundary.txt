@@ -1,0 +1,16 @@
+% Program for detecting boundary of an image.
+
+clc;
+close all;
+clear all;
+
+I = imread('circles.png');
+subplot(1,2,1); imshow(I); title('Original Image');
+SE = strel('rectangle',[5 5]);
+
+% Erode the image.
+I1=imerode(I,SE);
+
+% Take the difference of original and eroded image.
+I2= I-I1;
+subplot(1,2,2); imshow(I2); title('Boundary Image');

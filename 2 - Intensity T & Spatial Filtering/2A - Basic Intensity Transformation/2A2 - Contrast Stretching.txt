@@ -1,0 +1,13 @@
+% Contrast Stretching
+
+clc;
+clear all;
+close all;
+
+a=imread('pout.tif');
+s= imadjust(a,stretchlim(a,[0.01 0.99]));
+
+subplot(2,2,1); imshow(a); title('Input Image');
+subplot(2,2,2); imshow(s); title('Stretched Image');
+subplot(2,2,3); imhist(a); title('Hist of Input Image');
+subplot(2,2,4); imhist(s); title('Hist of Threshold Image');

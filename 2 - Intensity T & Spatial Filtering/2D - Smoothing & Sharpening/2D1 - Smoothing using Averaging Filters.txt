@@ -1,0 +1,71 @@
+% This program is for Averaging Spatial Filter.
+
+clc;
+clear all;
+close all;
+a=imread('cameraman.tif');
+
+% Addition of noise to the input image.
+b=imnoise(a,'salt & pepper');
+c=imnoise(a,'gaussian');
+d=imnoise(a,'speckle');
+
+% Defining 3x3 and 5x5 kernel.
+h1=1/9*ones(3,3);
+h2=1/25*ones(5,5);
+
+% Attempt to recover the image.
+b1=conv2(b,h1,'same');
+b2=conv2(b,h2,'same');
+c1=conv2(c,h1,'same');
+c2=conv2(c,h2,'same');
+d1=conv2(d,h1,'same');
+d2=conv2(d,h2,'same');
+
+% Displaying the result.
+figure(1);
+subplot(2,2,1); imshow(a); title('Original Image'),
+subplot(2,2,2); imshow(b); title('Salt & Pepper Noise'),
+subplot(2,2,3); imshow(uint8(b1)); title('3 x 3 Averaging filter'),
+subplot(2,2,4); imshow(uint8(b2)); title('5 x 5 Averaging filter')
+%...........................
+figure(2);
+subplot(2,2,1); imshow(a); title('Original Image'),
+subplot(2,2,2); imshow(c); title('Gaussian Noise'),
+subplot(2,2,3); imshow(uint8(c1)); title('3 x 3 Averaging filter'),
+subplot(2,2,4); imshow(uint8(c2)); title('5 x 5 Averaging filter'),
+%..........................
+figure(3);
+subplot(2,2,1); imshow(a); title('Original Image'),
+subplot(2,2,2); imshow(d); title('Speckle Noise'),
+subplot(2,2,3); imshow(uint8(d1)); title('3 x 3 Averaging filter'),
+subplot(2,2,4); imshow(uint8(d2)); title('5 x 5 Averaging filter'),
+
+% ==============================================================
+
+%%% This program is for comparing averaging & median filter.
+
+clc;
+clear all;
+close all;
+
+a=imread('cameraman.tif');
+
+% Addition of Salt and Pepper Noise.
+b=imnoise(a,'salt & pepper',0.1);
+
+% Defining the box and median filters.
+h1=1/9*ones(3,3);
+h2=1/25*ones(5,5);
+c1=conv2(b,h1,'same');
+c2=conv2(b,h2,'same');
+c3=medfilt2(b,[3 3]);
+c4=medfilt2(b,[5 5]);
+
+% Displaying the result.
+subplot(3,2,1); imshow(a); title('Original Image')
+subplot(3,2,2); imshow(b); title('Salt & Pepper Noise')
+subplot(3,2,3); imshow(uint8(c1)); title('3 x 3 smoothing')
+subplot(3,2,4); imshow(uint8(c2)); title('5 x 5 smoothing')
+subplot(3,2,5); imshow(uint8(c3)); title('3 x 3 Median filter')
+subplot(3,2,6); imshow(uint8(c4)); title('5 x 5 Median filter')

@@ -1,0 +1,16 @@
+% Find and display Fourier transform of an img
+
+clc;
+clear all;
+close all;
+
+I = imread('cameraman.tif');
+subplot(2,2,1); imshow(I); title('Original Image');
+
+F = fft2(I);
+subplot(2,2,2); imshow(abs(F),[]); title('FFT');
+
+subplot(2,2,3); imshow(log(abs(F)),[]); title('Log-FFT');
+
+F = fftshift(F);
+subplot(2,2,4); imshow(log(abs(F)),[]); title('Centered-log-FFT');

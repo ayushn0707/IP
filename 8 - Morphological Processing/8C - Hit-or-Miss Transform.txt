@@ -1,0 +1,17 @@
+% Program to apply Hit-or-Miss Transform.
+
+clc;
+close all;
+clear all;
+
+A = imread('blobs.png');
+subplot(1,2,1); imshow(A); title('Original Image');
+
+SE1=[1 1 1;1 1 1;1 1 1];
+SE2=~SE1;
+bw=bwhitmiss(A,SE1,SE2);
+subplot(1,2,2); imshow(bw); title('Hit and Miss Transform');
+
+% Take the difference of original and HMT image.
+% D = A - bw;
+% subplot(1,3,3); imshow(D); title('Thinned Image');

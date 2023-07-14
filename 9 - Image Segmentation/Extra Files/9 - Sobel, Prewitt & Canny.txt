@@ -1,0 +1,65 @@
+% Program for Edge detection using Sobel, Prewitt, Canny.
+
+clc;
+close all;
+clear all;
+
+figure(1);
+a = checkerboard(15,5,5)>0.5;
+subplot(2,2,1);
+imshow(a); title('Input Image');
+
+b = edge(a,'sobel',0.1,'horizontal');
+subplot(2,2,2);
+imshow(b); title('Sobel Horizontal Edge Detection');
+
+b = edge(a,'sobel',0.1,'vertical');
+subplot(2,2,3);
+imshow(b); title('Sobel Vertical Edge Detection');
+
+b = edge(a,'sobel',0.1,'both');
+subplot(2,2,4);
+imshow(b); title('Sobel Horizontal & Vertical ED');
+
+figure(2);
+a = checkerboard(15,5,5)>0.5;
+subplot(2,2,1);
+imshow(a); title('Input Image');
+
+d = edge(a,'prewitt','horizontal',0.1);
+subplot(2,2,2);
+imshow(d); title('Prewitt Horizontal Edge Detection');
+
+d = edge(a,'prewitt','vertical',0.1);
+subplot(2,2,3);
+imshow(d); title('Prewitt Vertical Edge Detection');
+
+d = edge(a,'prewitt','both',0.1);
+subplot(2,2,4);
+imshow(d); title('Prewitt Horizontal & Vertical ED');
+
+figure(3);
+a = checkerboard(15,5,5)>0.5;
+subplot(1,2,1);
+imshow(a); title('Input Image');
+
+b = edge(a,'canny',.01);
+subplot(1,2,2);
+imshow(b); title('Canny Edge Detection');
+
+figure(4);
+a = checkerboard(15,5,5)>0.5;
+subplot(2,2,1);
+imshow(a); title('Input Image');
+
+b = edge(a,'roberts','both');
+subplot(2,2,2);
+imshow(b); title('Roberts Horizontal & Vertical ED');
+
+c = edge(a,'zerocross');
+subplot(2,2,3);
+imshow(c); title('Zero Cross ED');
+
+d = edge(a,'log');
+subplot(2,2,4);
+imshow(d); title('Laplacian of Gaussian ED');

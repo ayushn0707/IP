@@ -1,0 +1,35 @@
+% High Boost Filtering
+
+clc;
+clear all;
+close all;
+
+a = imread("tire.tif");
+a = double(a);
+[row col] = size(a);
+for u = 1:1:row
+for v = 1:1:col
+D = ((u-(row/2))*2+(v-(col/2))*2)*0.5;
+if D<10            % Cut-off is taken as 10. It could be changed.
+H(u,v) = 0;        % As per the requirement
+else
+H(u,v) = 1;
+end 
+end 
+end
+
+A = 1.5; 
+H1 = (A-1)+H;
+vv = fft2(a); 
+vc = fftshift(vv); 
+x = vc.*H;
+x1 = vc.*H1;
+X = abs(ifft2(x));
+X1 = abs(ifft2(x1));
+
+% Plotting
+subplot(2,3,1); imshow(uint8(a)); title('Original Image');
+subplot(2,3,2); mesh(H); title('High Pass Filter');
+subplot(2,3,3); imshow(uint8(X)); title('High Pass Filtered Image');
+subplot(2,3,4); mesh(H1); title('High Boost Filter');
+subplot(2,3,5); imshow(uint8(X1)); title('High Boost Filtered Image');

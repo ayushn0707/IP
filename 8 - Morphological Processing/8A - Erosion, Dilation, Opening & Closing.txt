@@ -1,0 +1,27 @@
+% Program to apply Erosion, Dilation, Opening & Closing.
+
+clc;
+close all;
+clear all;
+
+figure(1);
+I = imread('cameraman.tif');
+subplot(1,3,1); imshow(I); title('Original Image');
+se = strel('rectangle',[5 5]); 
+
+eroded_DD = imerode(I,se); % Erode the image. 
+subplot(1,3,2); imshow(eroded_DD); title('Eroded Image');
+
+dilate_DD = imdilate(I,se); % Dilate the image.
+subplot(1,3,3); imshow(dilate_DD); title('Dilated Image');
+
+figure(2);
+J = imread('cameraman.tif');
+subplot(1,3,1); imshow(J); title('Original Image');
+se1 = strel('rectangle',[5 5]);
+
+open_DD = imopen(J,se1); % Open the image.
+subplot(1,3,2); imshow(open_DD); title('Opened Image');
+
+close_DD = imclose(J,se1); % Close the image.
+subplot(1,3,3); imshow(close_DD); title('Closed Image');

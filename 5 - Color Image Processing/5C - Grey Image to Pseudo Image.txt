@@ -1,0 +1,17 @@
+% Program to apply false colouring(pseudo) on a gray scale image.
+
+clc;
+clear all;
+close all;
+
+I = imread('rice.png');
+grayImage = im2gray(I);                      % im2gray = Convert RGB image into Gray Scale Image
+colorImage = ind2rgb(grayImage, jet(256));   % Converting Indexed image to RBG Image ie., RBG = ind2rgb(X, map)
+
+subplot(1,2,1);
+imshow(I);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(colorImage);
+title('False Colored Image');

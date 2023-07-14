@@ -1,0 +1,20 @@
+% Program to study the effects of varying the number of intensity levels in a digital image.
+
+clc;
+close all;
+clear all;
+
+i=imread('eight.tif');
+
+% To quantize the given image
+i=double(i);
+i=i+1;
+j=max(max(i));
+a=input('How many levels you want to have - 1 2 4 8:');
+b=j/(2^a);
+c=floor(i/(b+1));
+c1=(c*255)/max(max(c));  % Normalizing
+
+figure(1);
+subplot(1,2,1); imshow(uint8(i)); title('Original Image');
+subplot(1,2,2); imshow(uint8(c1)); title('Quantised Image');

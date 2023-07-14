@@ -1,0 +1,49 @@
+% Program to perform image arithmetic operations.
+
+clc;
+clear all;
+close all;
+
+a=imread('cameraman.tif');
+subplot(2,3,1); imshow(a); title('1st input image');
+
+b=imread('rice.png');
+subplot(2,3,2); imshow(b); title('2nd input image');
+
+c=imadd(a,b);
+subplot(2,3,3); imshow(c); title('Addition of images');
+
+d=imsubtract(a,b);
+subplot(2,3,4); imshow(d); title('Subtraction of images');
+
+e=immultiply(a,b);
+subplot(2,3,5); imshow(e); title('Multiplication of images');
+
+f=imdivide(a,b);
+subplot(2,3,6); imshow(f); title('Division of images');
+
+% =============================================================
+
+% Another way to add two images.
+
+clc;
+clear all;
+close all;
+
+I1=imread('cameraman.tif');
+I2=imread('rice.png');
+
+I3=I1+I2;
+subplot(2,3,1); imshow(I1); title('1st input image');
+subplot(2,3,2); imshow(I2); title('2nd input image');
+subplot(2,3,3); imshow(I3); title('Addition of images');
+
+% Another way to subtract two images.
+
+I4=imread('cameraman.tif');
+I5=imread('rice.png');
+
+I6=I4-I5;
+subplot(2,3,4); imshow(I4); title('1st input image');
+subplot(2,3,5); imshow(I5); title('2nd input image');
+subplot(2,3,6); imshow(I6); title('Subtraction of images');

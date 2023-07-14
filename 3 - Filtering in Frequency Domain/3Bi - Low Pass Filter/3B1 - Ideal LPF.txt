@@ -1,0 +1,32 @@
+% Ideal LPF
+
+clc;
+clear all;
+close all;
+
+a=imread('cameraman.tif');
+a = double(a);
+c=size(a);
+N=c(1);
+D0 = input("Enter the cut-off frequency:");
+for u=1:1:c(1)
+for v=1:1:c(2)
+D = ((u-(N/2))^2+(v-(N/2))^2)^0.5;
+if D<D0
+H(u,v) = 1;
+else
+H(u,v) = 0;
+end
+end
+end
+
+vv=fft2(a);
+vc=fftshift(vv);
+x=vc.*H;
+X=abs(ifft2(x));
+
+% Plotting 
+subplot(2,2,1); imshow(uint8(a));
+subplot(2,2,2); mesh(H);
+subplot(2,2,3); imshow(uint8(X));
+subplot(2,2,4); imagesc(H); colormap(gray);
